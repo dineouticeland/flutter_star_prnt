@@ -96,7 +96,6 @@ class PrintCommands {
   /// imageSize [Size] is the size of image generated.
   /// sets the [TextDirection].
   appendBitmapWidget({
-    required BuildContext context,
     required Widget widget,
     bool diffusion = true,
     int width = 576,
@@ -110,7 +109,6 @@ class PrintCommands {
     TextDirection textDirection = TextDirection.ltr,
   }) {
     createImageFromWidget(
-      context,
       widget,
       wait: wait,
       logicalSize: logicalSize,
@@ -180,7 +178,6 @@ class PrintCommands {
   /// imageSize [Size] is the size of image generated.
   /// sets the [TextDirection].
   static Future<Uint8List?> createImageFromWidget(
-    BuildContext context,
     Widget widget, {
     Duration? wait,
     Size? logicalSize,
@@ -188,9 +185,11 @@ class PrintCommands {
     TextDirection textDirection = TextDirection.ltr,
   }) async {
     final RenderRepaintBoundary repaintBoundary = RenderRepaintBoundary();
-    logicalSize ??=
-        View.of(context).physicalSize / View.of(context).devicePixelRatio;
-    imageSize ??= View.of(context).physicalSize;
+//     logicalSize ??=
+//         View.of(context).physicalSize / View.of(context).devicePixelRatio;
+//     imageSize ??= View.of(context).physicalSize;
+    logicalSize ??= ui.window.physicalSize / ui.window.devicePixelRatio;
+    imageSize ??= ui.window.physicalSize;
     assert(logicalSize.aspectRatio == imageSize.aspectRatio);
 
     final RenderView renderView = RenderView(
