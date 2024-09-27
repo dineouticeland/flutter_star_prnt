@@ -185,7 +185,9 @@ class PrintCommands {
     TextDirection textDirection = TextDirection.ltr,
   }) async {
     final RenderRepaintBoundary repaintBoundary = RenderRepaintBoundary();
-
+//     logicalSize ??=
+//         View.of(context).physicalSize / View.of(context).devicePixelRatio;
+//     imageSize ??= View.of(context).physicalSize;
     logicalSize ??= ui.window.physicalSize / ui.window.devicePixelRatio;
     imageSize ??= ui.window.physicalSize;
     assert(logicalSize.aspectRatio == imageSize.aspectRatio);

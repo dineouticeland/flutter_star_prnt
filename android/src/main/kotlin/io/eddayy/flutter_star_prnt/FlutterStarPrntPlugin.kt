@@ -41,7 +41,8 @@ public class FlutterStarPrntPlugin : FlutterPlugin, MethodCallHandler {
     @JvmStatic
     fun registerWith(registrar: Registrar) {
       val channel = MethodChannel(registrar.messenger(), "flutter_star_prnt")
-      channel.setMethodCallHandler(FlutterStarPrntPlugin())
+      channel.setMethodCallHandler(
+              FlutterStarPrntPlugin())
       FlutterStarPrntPlugin.setupPlugin(registrar.messenger(), registrar.context())
     }
     @JvmStatic
@@ -353,6 +354,8 @@ public class FlutterStarPrntPlugin : FlutterPlugin, MethodCallHandler {
           builder.append(it.get("append").toString().toByteArray(encoding))
       else if (it.containsKey("appendRaw"))
           builder.append(it.get("appendRaw").toString().toByteArray(encoding))
+      else if (it.containsKey("appendMultiple"))
+          builder.appendMultiple(it.get("appendMultiple").toString().toByteArray(encoding), 2, 2)
       else if (it.containsKey("appendEmphasis"))
           builder.appendEmphasis(it.get("appendEmphasis").toString().toByteArray(encoding))
       else if (it.containsKey("enableEmphasis"))
